@@ -2,7 +2,7 @@ import cv2
 import sys
 import numpy as np
 
-PATH_TO_DATA = '../data/'
+PATH_TO_DATA = '../data/videos/'
 
 def recordVideo(filename):
   # Create a VideoCapture object
