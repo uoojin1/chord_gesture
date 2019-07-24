@@ -28,10 +28,10 @@ def dataframeGenerator(filename):
       filename_to_class.append([img, gesture_class])
   
   # create pandas dataframe that will be exported as a csv file
-  img_data_df = pd.DataFrame(columns=['filename', 'class'], data=filename_to_class)
+  df_img_data = pd.DataFrame(columns=['filename', 'class'], data=filename_to_class)
 
   # wrtie to a csv file
-  img_data_df.to_csv(PATH_TO_DATAFRAME_FOLDER + filename, encoding='utf-8', index=False)
+  df_img_data.to_csv(PATH_TO_DATAFRAME_FOLDER + filename, encoding='utf-8', index=False)
   print('created csv file named {filename}'.format(filename=filename))      
 
 if __name__ == "__main__":

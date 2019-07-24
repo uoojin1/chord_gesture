@@ -6,8 +6,9 @@ import numpy as np
 PATH_TO_VIDEOS = '../data/videos/'
 PATH_TO_IMGS = '../data/imgs/'
 
-def videoToImgs(filename):
+def videoToImgs(filename, to_individual_folders=True):
   print(filename)
+  print('to individual folders?', to_individual_folders)
   
   image_class = filename.split('.')[0]
   print('image_class', image_class)
@@ -26,11 +27,17 @@ def videoToImgs(filename):
       # goto beginning of loop and read next frame
       continue
 
-    output_file_name = '{image_class}/{image_class}-{filenumber}.jpg'.format(
-      filenumber=filenumber,
-      image_class=image_class
-    )
-
+    if to_individual_folders:
+      output_file_name = '{image_class}/{image_class}-{filenumber}.jpg'.format(
+        filenumber=filenumber,
+        image_class=image_class
+      )
+    else:
+      output_file_name = 'raw/{image_class}-{filenumber}.jpg'.format(
+        filenumber=filenumber,
+        image_class=image_class
+      )
+      
     print('output_filename', output_file_name)
 
     if capture_success == True:
@@ -55,10 +62,14 @@ def videoToImgs(filename):
 
 if __name__ == "__main__":
   args = sys.argv
+
+  # change this to toggle saving location
+  to_individual_folders = True
+  
   if len(args) > 1:
     filename = args[1]
-    videoToImgs(filename)
+    videoToImgs(filename, to_individual_folders)
   else:
     videos = os.listdir('../data/videos')
     for video_filename in videos:
-      videoToImgs(video_filename)
+      videoToImgs(video_filename, to_individual_folders)
