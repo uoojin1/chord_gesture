@@ -1,20 +1,12 @@
 import numpy as np
-import cv2
+from video_camera import VideoCamera
 
-cap = cv2.VideoCapture(0)
+if __name__ == "__main__":
+  
+  video_camera = VideoCamera()
+  print('created video camera')
 
-while(True):
-    # Capture frame-by-frame
-    ret, frame = cap.read()
+  # while True:
+  #   frame = video_camera.get_frame()
 
-    # Grey out the picture
-    gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
-
-    # display the resulting frame
-    cv2.imshow('frame', gray)
-
-    if cv2.waitKey(1) & 0xFF == ord('q'):
-        break
-
-cap.release()
-cv2.destroyAllWindows()
+  video_camera.run()
